@@ -93,12 +93,8 @@ img {
 .logo .logo-icon {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
+  object-fit: contain;
 }
 
 .logo span {
@@ -369,6 +365,153 @@ section {
 
 .section-header.center .section-subtitle {
   margin: 0 auto;
+}
+
+/* ===== AI AGENTS EXPLAINER ===== */
+.agent-explainer-content {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.agent-explainer-content p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.agent-explainer-content strong {
+  color: var(--text-primary);
+}
+
+.agent-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.agent-comparison-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 36px 32px;
+  transition: all var(--transition);
+}
+
+.agent-comparison-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.comparison-card-icon {
+  font-size: 1.6rem;
+}
+
+.comparison-card-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.comparison-card-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-left: auto;
+}
+
+.chatbot-card {
+  border-color: var(--border-color);
+}
+
+.chatbot-card .comparison-card-tag {
+  background: rgba(120, 120, 140, 0.15);
+  color: var(--text-muted);
+}
+
+.chatbot-card ul li::before {
+  content: '\2212';
+  color: var(--text-muted);
+}
+
+.agent-card {
+  border-color: var(--border-orange);
+  box-shadow: 0 0 30px var(--orange-glow);
+}
+
+.agent-card .comparison-card-tag {
+  background: var(--orange-glow);
+  color: var(--orange-primary);
+}
+
+.agent-card ul li::before {
+  content: '\2713';
+  color: var(--orange-primary);
+}
+
+.agent-comparison-card ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.agent-comparison-card ul li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.agent-comparison-card ul li::before {
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.comparison-example {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comparison-example strong {
+  color: var(--text-primary);
+}
+
+.agent-bottom-line {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--orange-glow);
+  border: 1px solid var(--border-orange);
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.agent-bottom-line p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.agent-bottom-line strong {
+  color: var(--orange-primary);
 }
 
 /* ===== SEGMENTS / USE CASES GRID ===== */
@@ -1049,6 +1192,7 @@ section {
     font-size: 2rem;
   }
 
+  .agent-comparison-grid,
   .segments-grid,
   .steps-grid,
   .features-grid,
