@@ -237,7 +237,9 @@ img {
 }
 
 .hero-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--orange-glow);
   border: 1px solid var(--border-orange);
   padding: 6px 16px;
@@ -414,7 +416,15 @@ section {
 }
 
 .comparison-card-icon {
-  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comparison-card-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 
 .comparison-card-header h3 {
@@ -561,9 +571,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   margin-bottom: 24px;
   border: 1px solid var(--border-orange);
+  color: var(--orange-primary);
+}
+
+.segment-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .segment-card h3 {
@@ -688,9 +703,13 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   color: var(--orange-primary);
   border: 1px solid var(--border-orange);
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .feature-item h4 {
@@ -727,8 +746,14 @@ section {
 .pain-icon {
   flex-shrink: 0;
   color: var(--orange-primary);
-  font-size: 1.1rem;
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.pain-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .pain-item p {
