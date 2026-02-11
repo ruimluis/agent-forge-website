@@ -389,30 +389,40 @@
         <p class="section-subtitle">Plug in your numbers and see what AI automation could save your agency.</p>
       </div>
 
-      <div class="calculator-card">
-        <div class="calculator-side">
-          <h3>Your Numbers <span>Adjust to match your agency</span></h3>
-          <div class="calc-input-group">
-            <label>Number of clients</label>
-            <input type="number" id="dm-clients" value="10" oninput="calcMarketing()">
+      <div class="calculator-wrapper">
+        <div class="calculator-card">
+          <div class="calc-inputs-grid">
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Number of clients</label>
+                <span class="calc-value" id="dm-clients-val">10</span>
+              </div>
+              <input type="range" id="dm-clients" min="1" max="50" step="1" value="10" oninput="calcMarketing()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Hours/week reporting per client</label>
+                <span class="calc-value" id="dm-report-hours-val">4</span>
+              </div>
+              <input type="range" id="dm-report-hours" min="1" max="15" step="1" value="4" oninput="calcMarketing()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Team hourly rate</label>
+                <span class="calc-value" id="dm-rate-val">$75</span>
+              </div>
+              <input type="range" id="dm-rate" min="25" max="250" step="5" value="75" oninput="calcMarketing()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Avg monthly retainer/client</label>
+                <span class="calc-value" id="dm-retainer-val">$3,000</span>
+              </div>
+              <input type="range" id="dm-retainer" min="500" max="20000" step="250" value="3000" oninput="calcMarketing()">
+            </div>
           </div>
-          <div class="calc-input-group">
-            <label>Hours/week on reporting per client</label>
-            <input type="number" id="dm-report-hours" value="4" oninput="calcMarketing()">
-          </div>
-          <div class="calc-input-group">
-            <label>Team hourly rate ($)</label>
-            <input type="number" id="dm-rate" value="75" oninput="calcMarketing()">
-          </div>
-          <div class="calc-input-group">
-            <label>Avg monthly retainer per client ($)</label>
-            <input type="number" id="dm-retainer" value="3000" oninput="calcMarketing()">
-          </div>
-        </div>
-
-        <div class="calculator-side">
-          <h3>Your Potential ROI</h3>
-          <div class="calc-results">
+          <div class="calc-divider"></div>
+          <div class="calc-results-grid">
             <div class="calc-result-item">
               <span class="calc-result-number" id="dm-hours-saved">32</span>
               <span class="calc-result-label">Hours saved per week</span>
@@ -425,10 +435,10 @@
               <span class="calc-result-number" id="dm-new-clients">4</span>
               <span class="calc-result-label">Additional client capacity</span>
             </div>
-            <div class="calc-result-item highlight">
-              <span class="calc-result-number" id="dm-new-revenue">$144,000</span>
-              <span class="calc-result-label">Potential additional annual revenue</span>
-            </div>
+          </div>
+          <div class="calc-result-highlight">
+            <span class="calc-highlight-label">Potential additional annual revenue</span>
+            <span><span class="calc-highlight-number" id="dm-new-revenue">$144,000</span><span class="calc-highlight-suffix">/ year</span></span>
           </div>
         </div>
       </div>
@@ -442,6 +452,11 @@
     var rate = Number(document.getElementById('dm-rate').value) || 0;
     var retainer = Number(document.getElementById('dm-retainer').value) || 0;
 
+    document.getElementById('dm-clients-val').textContent = clients;
+    document.getElementById('dm-report-hours-val').textContent = reportHours;
+    document.getElementById('dm-rate-val').textContent = '$' + rate.toLocaleString();
+    document.getElementById('dm-retainer-val').textContent = '$' + retainer.toLocaleString();
+
     var hoursSaved = Math.round(clients * reportHours * 0.8);
     var annualSavings = hoursSaved * rate * 52;
     var newClients = Math.round(hoursSaved / 8);
@@ -451,6 +466,15 @@
     document.getElementById('dm-annual-savings').textContent = '$' + annualSavings.toLocaleString();
     document.getElementById('dm-new-clients').textContent = newClients;
     document.getElementById('dm-new-revenue').textContent = '$' + newRevenue.toLocaleString();
+
+    updateSliderFill(document.getElementById('dm-clients'));
+    updateSliderFill(document.getElementById('dm-report-hours'));
+    updateSliderFill(document.getElementById('dm-rate'));
+    updateSliderFill(document.getElementById('dm-retainer'));
+  }
+  function updateSliderFill(s) {
+    var p = (s.value - s.min) / (s.max - s.min) * 100;
+    s.style.background = 'linear-gradient(to right, #ff6a00 0%, #ff8a33 ' + p + '%, rgba(255,255,255,0.08) ' + p + '%, rgba(255,255,255,0.08) 100%)';
   }
   calcMarketing();
   </script>

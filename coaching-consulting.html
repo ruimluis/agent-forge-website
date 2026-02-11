@@ -320,30 +320,40 @@
         <p class="section-subtitle">Plug in your numbers. See your potential savings instantly.</p>
       </div>
 
-      <div class="calculator-card">
-        <div class="calculator-side">
-          <h3>Your Numbers <span>Adjust to match your practice</span></h3>
-          <div class="calc-input-group">
-            <label>Your hourly rate ($)</label>
-            <input type="number" id="cc-rate" value="300" oninput="calcCoaching()">
+      <div class="calculator-wrapper">
+        <div class="calculator-card">
+          <div class="calc-inputs-grid">
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Your hourly rate</label>
+                <span class="calc-value" id="cc-rate-val">$300</span>
+              </div>
+              <input type="range" id="cc-rate" min="50" max="1000" step="25" value="300" oninput="calcCoaching()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Hours/week on admin</label>
+                <span class="calc-value" id="cc-admin-hours-val">20</span>
+              </div>
+              <input type="range" id="cc-admin-hours" min="5" max="50" step="1" value="20" oninput="calcCoaching()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Current number of clients</label>
+                <span class="calc-value" id="cc-clients-val">15</span>
+              </div>
+              <input type="range" id="cc-clients" min="1" max="50" step="1" value="15" oninput="calcCoaching()">
+            </div>
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <label>Avg client value/year</label>
+                <span class="calc-value" id="cc-client-value-val">$5,000</span>
+              </div>
+              <input type="range" id="cc-client-value" min="1000" max="50000" step="500" value="5000" oninput="calcCoaching()">
+            </div>
           </div>
-          <div class="calc-input-group">
-            <label>Hours/week spent on admin</label>
-            <input type="number" id="cc-admin-hours" value="20" oninput="calcCoaching()">
-          </div>
-          <div class="calc-input-group">
-            <label>Current number of clients</label>
-            <input type="number" id="cc-clients" value="15" oninput="calcCoaching()">
-          </div>
-          <div class="calc-input-group">
-            <label>Average client value per year ($)</label>
-            <input type="number" id="cc-client-value" value="5000" oninput="calcCoaching()">
-          </div>
-        </div>
-
-        <div class="calculator-side">
-          <h3>Your Potential ROI</h3>
-          <div class="calc-results">
+          <div class="calc-divider"></div>
+          <div class="calc-results-grid">
             <div class="calc-result-item">
               <span class="calc-result-number" id="cc-hours-saved">14</span>
               <span class="calc-result-label">Hours reclaimed per week</span>
@@ -356,10 +366,10 @@
               <span class="calc-result-number" id="cc-new-clients">7</span>
               <span class="calc-result-label">Additional clients you could serve</span>
             </div>
-            <div class="calc-result-item highlight">
-              <span class="calc-result-number" id="cc-new-revenue">$35,000</span>
-              <span class="calc-result-label">Potential additional annual revenue</span>
-            </div>
+          </div>
+          <div class="calc-result-highlight">
+            <span class="calc-highlight-label">Potential additional annual revenue</span>
+            <span><span class="calc-highlight-number" id="cc-new-revenue">$35,000</span><span class="calc-highlight-suffix">/ year</span></span>
           </div>
         </div>
       </div>
@@ -373,6 +383,11 @@
     var clients = Number(document.getElementById('cc-clients').value) || 0;
     var clientValue = Number(document.getElementById('cc-client-value').value) || 0;
 
+    document.getElementById('cc-rate-val').textContent = '$' + rate.toLocaleString();
+    document.getElementById('cc-admin-hours-val').textContent = adminHours;
+    document.getElementById('cc-clients-val').textContent = clients;
+    document.getElementById('cc-client-value-val').textContent = '$' + clientValue.toLocaleString();
+
     var hoursSaved = Math.round(adminHours * 0.7);
     var annualSavings = hoursSaved * rate * 52;
     var newClients = Math.round(hoursSaved / 2);
@@ -382,6 +397,15 @@
     document.getElementById('cc-annual-savings').textContent = '$' + annualSavings.toLocaleString();
     document.getElementById('cc-new-clients').textContent = newClients;
     document.getElementById('cc-new-revenue').textContent = '$' + newRevenue.toLocaleString();
+
+    updateSliderFill(document.getElementById('cc-rate'));
+    updateSliderFill(document.getElementById('cc-admin-hours'));
+    updateSliderFill(document.getElementById('cc-clients'));
+    updateSliderFill(document.getElementById('cc-client-value'));
+  }
+  function updateSliderFill(s) {
+    var p = (s.value - s.min) / (s.max - s.min) * 100;
+    s.style.background = 'linear-gradient(to right, #ff6a00 0%, #ff8a33 ' + p + '%, rgba(255,255,255,0.08) ' + p + '%, rgba(255,255,255,0.08) 100%)';
   }
   calcCoaching();
   </script>
