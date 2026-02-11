@@ -380,6 +380,80 @@
     </div>
   </section>
 
+  <!-- ROI CALCULATOR -->
+  <section id="roi-calculator">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">ROI Calculator</span>
+        <h2 class="section-title">Calculate Your Recruiting ROI</h2>
+        <p class="section-subtitle">See how AI automation impacts your placements and bottom line.</p>
+      </div>
+
+      <div class="calculator-card">
+        <div class="calculator-side">
+          <h3>Your Numbers <span>Adjust to match your firm</span></h3>
+          <div class="calc-input-group">
+            <label>Number of recruiters</label>
+            <input type="number" id="rc-recruiters" value="3" oninput="calcRecruiting()">
+          </div>
+          <div class="calc-input-group">
+            <label>Avg placement fee ($)</label>
+            <input type="number" id="rc-fee" value="15000" oninput="calcRecruiting()">
+          </div>
+          <div class="calc-input-group">
+            <label>Current placements per month</label>
+            <input type="number" id="rc-placements" value="8" oninput="calcRecruiting()">
+          </div>
+          <div class="calc-input-group">
+            <label>Hours/week on admin per recruiter</label>
+            <input type="number" id="rc-admin-hours" value="25" oninput="calcRecruiting()">
+          </div>
+        </div>
+
+        <div class="calculator-side">
+          <h3>Your Potential ROI</h3>
+          <div class="calc-results">
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="rc-hours-saved">45</span>
+              <span class="calc-result-label">Hours saved per week across team</span>
+            </div>
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="rc-new-placements">5</span>
+              <span class="calc-result-label">Additional placements per month</span>
+            </div>
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="rc-fill-reduction">55%</span>
+              <span class="calc-result-label">Reduction in time-to-fill</span>
+            </div>
+            <div class="calc-result-item highlight">
+              <span class="calc-result-number" id="rc-new-revenue">$864,000</span>
+              <span class="calc-result-label">Potential additional annual revenue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  function calcRecruiting() {
+    var recruiters = Number(document.getElementById('rc-recruiters').value) || 0;
+    var fee = Number(document.getElementById('rc-fee').value) || 0;
+    var placements = Number(document.getElementById('rc-placements').value) || 0;
+    var adminHours = Number(document.getElementById('rc-admin-hours').value) || 0;
+
+    var hoursSaved = Math.round(recruiters * adminHours * 0.6);
+    var newPlacements = Math.round(placements * 0.6);
+    var newRevenue = newPlacements * fee * 12;
+
+    document.getElementById('rc-hours-saved').textContent = hoursSaved;
+    document.getElementById('rc-new-placements').textContent = newPlacements;
+    document.getElementById('rc-fill-reduction').textContent = '55%';
+    document.getElementById('rc-new-revenue').textContent = '$' + newRevenue.toLocaleString();
+  }
+  calcRecruiting();
+  </script>
+
   <!-- PRICING -->
   <section style="background: var(--bg-secondary);">
     <div class="container">

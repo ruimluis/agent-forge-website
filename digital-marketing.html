@@ -380,6 +380,81 @@
     </div>
   </section>
 
+  <!-- ROI CALCULATOR -->
+  <section id="roi-calculator">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">ROI Calculator</span>
+        <h2 class="section-title">Calculate Your Agency's Savings</h2>
+        <p class="section-subtitle">Plug in your numbers and see what AI automation could save your agency.</p>
+      </div>
+
+      <div class="calculator-card">
+        <div class="calculator-side">
+          <h3>Your Numbers <span>Adjust to match your agency</span></h3>
+          <div class="calc-input-group">
+            <label>Number of clients</label>
+            <input type="number" id="dm-clients" value="10" oninput="calcMarketing()">
+          </div>
+          <div class="calc-input-group">
+            <label>Hours/week on reporting per client</label>
+            <input type="number" id="dm-report-hours" value="4" oninput="calcMarketing()">
+          </div>
+          <div class="calc-input-group">
+            <label>Team hourly rate ($)</label>
+            <input type="number" id="dm-rate" value="75" oninput="calcMarketing()">
+          </div>
+          <div class="calc-input-group">
+            <label>Avg monthly retainer per client ($)</label>
+            <input type="number" id="dm-retainer" value="3000" oninput="calcMarketing()">
+          </div>
+        </div>
+
+        <div class="calculator-side">
+          <h3>Your Potential ROI</h3>
+          <div class="calc-results">
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="dm-hours-saved">32</span>
+              <span class="calc-result-label">Hours saved per week</span>
+            </div>
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="dm-annual-savings">$124,800</span>
+              <span class="calc-result-label">Annual cost savings</span>
+            </div>
+            <div class="calc-result-item">
+              <span class="calc-result-number" id="dm-new-clients">4</span>
+              <span class="calc-result-label">Additional client capacity</span>
+            </div>
+            <div class="calc-result-item highlight">
+              <span class="calc-result-number" id="dm-new-revenue">$144,000</span>
+              <span class="calc-result-label">Potential additional annual revenue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  function calcMarketing() {
+    var clients = Number(document.getElementById('dm-clients').value) || 0;
+    var reportHours = Number(document.getElementById('dm-report-hours').value) || 0;
+    var rate = Number(document.getElementById('dm-rate').value) || 0;
+    var retainer = Number(document.getElementById('dm-retainer').value) || 0;
+
+    var hoursSaved = Math.round(clients * reportHours * 0.8);
+    var annualSavings = hoursSaved * rate * 52;
+    var newClients = Math.round(hoursSaved / 8);
+    var newRevenue = newClients * retainer * 12;
+
+    document.getElementById('dm-hours-saved').textContent = hoursSaved;
+    document.getElementById('dm-annual-savings').textContent = '$' + annualSavings.toLocaleString();
+    document.getElementById('dm-new-clients').textContent = newClients;
+    document.getElementById('dm-new-revenue').textContent = '$' + newRevenue.toLocaleString();
+  }
+  calcMarketing();
+  </script>
+
   <!-- PRICING -->
   <section style="background: var(--bg-secondary);">
     <div class="container">

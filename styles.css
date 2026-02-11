@@ -1162,6 +1162,102 @@ section {
   font-style: normal;
 }
 
+/* ===== ROI CALCULATOR ===== */
+.calculator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calculator-side h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.calculator-side h3 span {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.calc-input-group {
+  margin-bottom: 20px;
+}
+
+.calc-input-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.calc-input-group input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color var(--transition);
+  box-sizing: border-box;
+}
+
+.calc-input-group input:focus {
+  outline: none;
+  border-color: var(--orange-primary);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.15);
+}
+
+.calc-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.calc-result-item {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border-color var(--transition);
+}
+
+.calc-result-item.highlight {
+  border-color: var(--orange-primary);
+  background: var(--orange-glow);
+}
+
+.calc-result-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--orange-primary);
+  display: block;
+  line-height: 1.2;
+}
+
+.calc-result-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.calculator-divider {
+  width: 1px;
+  background: var(--border-color);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .segments-grid,
@@ -1224,8 +1320,14 @@ section {
   .use-cases-grid,
   .pricing-grid,
   .pain-grid,
-  .stats-grid {
+  .stats-grid,
+  .calculator-card {
     grid-template-columns: 1fr;
+  }
+
+  .calculator-card {
+    padding: 24px;
+    gap: 32px;
   }
 
   .footer-grid {
